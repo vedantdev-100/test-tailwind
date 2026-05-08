@@ -69,7 +69,7 @@ export default function HomeScreen() {
       >
         <BottomSheetView className="p-5 flex-1 items-center">
           <Text className="text-black text-2xl font-bold">
-            This is bottom Sheet
+            Product Listings
           </Text>
         </BottomSheetView>
       </BottomSheetModal>
