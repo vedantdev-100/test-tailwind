@@ -18,10 +18,11 @@ export default function HomeScreen() {
 
   const openSheet = useCallback(() => {
     bottomSheetRef.current?.expand();
+    bottomSheetRef.current?.present();
   }, []);
-  // const closeSheet = useCallback(() => {
-  //   bottomSheetRef.current?.close();
-  // }, []);
+  const closeSheet = useCallback(() => {
+    bottomSheetRef.current?.close();
+  }, []);
 
   const backDrop = useCallback(
     (props: any) => (
@@ -40,7 +41,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView
-      edges={["top", "bottom"]}
+      edges={["top"]}
       className="text-white bg-blue-800 p-5 flex-1"
     >
       <Text className="text-white p-5">Home Page</Text>
