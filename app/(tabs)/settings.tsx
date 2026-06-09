@@ -1,5 +1,5 @@
 import { Image } from "expo-image";
-import { Platform, StyleSheet } from "react-native";
+import { Platform, StatusBar, StyleSheet } from "react-native";
 
 import { Collapsible } from "@/components/ui/collapsible";
 import { ExternalLink } from "@/components/external-link";
@@ -22,6 +22,11 @@ export default function TabTwoScreen() {
                 />
             }
         >
+            <StatusBar
+                barStyle="light-content"
+                backgroundColor="#1E293B"
+                translucent={false}
+            />
             <ThemedView style={styles.titleContainer}>
                 <ThemedText
                     type="title"

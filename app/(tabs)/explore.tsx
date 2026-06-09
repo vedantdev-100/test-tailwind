@@ -8,6 +8,7 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { Fonts } from "@/constants/theme";
+import { StatusBar } from "expo-status-bar";
 
 export default function TabTwoScreen() {
   return (
@@ -23,6 +24,14 @@ export default function TabTwoScreen() {
         />
       }
     >
+      {/* <StatusBar
+              barStyle="dark-content"
+              translucent
+              backgroundColor="transparent" // Android
+            /> */}
+      <StatusBar
+        style="light"// Android
+      />
       <ThemedView style={styles.titleContainer}>
         <ThemedText
           type="title"
