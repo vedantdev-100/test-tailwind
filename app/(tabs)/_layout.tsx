@@ -67,6 +67,14 @@ export default function TabLayout() {
           drawable="ic_menu_compass"
         />
       </NativeTabs.Trigger>
+      
+      <NativeTabs.Trigger name="settings">
+        <Label>Settings</Label>
+        <Icon
+          sf="gearshape.fill"
+          drawable="ic_menu_manage"
+        />
+      </NativeTabs.Trigger>
     </NativeTabs>
   );
 }

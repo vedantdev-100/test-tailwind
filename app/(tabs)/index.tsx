@@ -41,39 +41,42 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView
-      edges={["top"]}
-      className="text-white bg-blue-800 p-5 flex-1"
+      edges={["top", "bottom"]}
+      className="text-white bg-blue-800 pt-26 flex-1"
     >
-      <Text className="text-white p-5">Home Page</Text>
-      <View className="p-3 bg-blue-600 items-center">
-        <TouchableOpacity
-          onPress={openSheet}
-          className="p-3 bg-white w-1/2 items-center"
+      <View className="flex-1 p-3 bg-blue-600 items-center">
+
+        <Text className="text-white p-5">Home Page</Text>
+        <View className="p-3 bg-blue-600 items-center">
+          <TouchableOpacity
+            onPress={openSheet}
+            className="p-3 bg-white w-1/2 items-center"
+          >
+            <Text> Open Bottom Sheet</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => snapToIndex(1)}
+            className="p-3 bg-white w-1/2 items-center"
+          >
+            <Text> Snap Bottom Sheet</Text>
+          </TouchableOpacity>
+        </View>
+        <BottomSheetModal
+          ref={bottomSheetRef}
+          snapPoints={snapPoints}
+          index={-1}
+          enablePanDownToClose={false}
+          handleIndicatorStyle={{ backgroundColor: "orange", width: 50 }}
+          backgroundStyle={{ backgroundColor: "#b9e4ed" }}
+          backdropComponent={backDrop}
         >
-          <Text> Open Bottom Sheet</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => snapToIndex(1)}
-          className="p-3 bg-white w-1/2 items-center"
-        >
-          <Text> Snap Bottom Sheet</Text>
-        </TouchableOpacity>
+          <BottomSheetView className="p-5 flex-1 items-center">
+            <Text className="text-black text-2xl font-bold">
+              Product Listings
+            </Text>
+          </BottomSheetView>
+        </BottomSheetModal>
       </View>
-      <BottomSheetModal
-        ref={bottomSheetRef}
-        snapPoints={snapPoints}
-        index={-1}
-        enablePanDownToClose={false}
-        handleIndicatorStyle={{ backgroundColor: "orange", width: 100 }}
-        backgroundStyle={{ backgroundColor: "#b9e4ed" }}
-        backdropComponent={backDrop}
-      >
-        <BottomSheetView className="p-5 flex-1 items-center">
-          <Text className="text-black text-2xl font-bold">
-            Product Listings
-          </Text>
-        </BottomSheetView>
-      </BottomSheetModal>
     </SafeAreaView>
   );
 }
