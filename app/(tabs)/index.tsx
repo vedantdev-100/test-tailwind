@@ -1,6 +1,7 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import {
   SafeAreaView,
+  useSafeAreaInsets,
   // useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import BottomSheet, {
@@ -9,9 +10,13 @@ import BottomSheet, {
   BottomSheetModal
 } from "@gorhom/bottom-sheet";
 import { useCallback, useMemo, useRef } from "react";
+import { AppHeader } from "@/src/components/AppHeader";
+import { layout } from "@/src/theme";
 
 export default function HomeScreen() {
   const bottomSheetRef = useRef<BottomSheetModal>(null);
+
+  const insets = useSafeAreaInsets();
 
   // Define snap points
   const snapPoints = useMemo(() => ["25%", "50%", "80%"], []);
@@ -40,11 +45,19 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <SafeAreaView
-      edges={["top", "bottom"]}
-      className="text-white bg-blue-800 pt-26 flex-1"
-    >
-      <View className="flex-1 p-3 bg-blue-600 items-center">
+    // <SafeAreaView
+    //   edges={["top", "bottom"]}
+    //   className="text-white bg-blue-800 pt-26 flex-1"
+    // >
+    <View className="flex-1 p-3 bg-blue-600 items-center">
+      <AppHeader title="Home" />
+      <ScrollView
+        contentContainerStyle={{
+          paddingTop: insets.top + layout.HEADER_H + 16,
+          paddingBottom: 16,
+          paddingHorizontal: 16,
+        }}
+      >
 
         <Text className="text-white p-5">Home Page</Text>
         <View className="p-3 bg-blue-600 items-center">
@@ -76,7 +89,8 @@ export default function HomeScreen() {
             </Text>
           </BottomSheetView>
         </BottomSheetModal>
-      </View>
-    </SafeAreaView>
+      </ScrollView>
+    </View>
+    // </SafeAreaView>
   );
 }
