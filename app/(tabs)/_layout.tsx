@@ -24,7 +24,7 @@ function RootLayout() {
   return (
     <>
       {/* <AppStatusBar style="auto" backgroundColor="transparent" /> */}
-      <StatusBar translucent style="dark" backgroundColor='transparent' />
+      <StatusBar style="dark" backgroundColor='#e7e7e7' />
 
       <Tabs
         tabBar={(props) => <AppTabBar {...props} />}
