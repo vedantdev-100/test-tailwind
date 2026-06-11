@@ -1,71 +1,49 @@
-// app/_layout.tsx
-import { Tabs } from 'expo-router';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { useColorScheme } from 'react-native';
-import { AppStatusBar } from '../src/components/AppStatusBar';
-import { AppTabBar } from '../src/components/AppTabBar';
-import { useAndroidNavBar } from '../src/hooks/useAndroidNavBar';
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import "react-native-reanimated";
 import { colors } from '../src/theme';
+import { useColorScheme } from 'react-native';
+import "../global.css";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-// Your icon library, e.g.:
-// import { Ionicons } from '@expo/vector-icons';
+import * as NavigationBar from "expo-navigation-bar";
+import { useEffect } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-function RootLayout() {
-  const scheme = useColorScheme();
-  const isDark = scheme === 'dark';
 
-  // Sync Android nav bar with app theme
-  useAndroidNavBar({
-    backgroundColor: isDark ? colors.backgroundDark : colors.background,
-    buttonStyle: isDark ? 'light' : 'dark',
-  });
+export const unstable_settings = {
+  anchor: "(tabs)",
+};
 
-  return (
-    <>
-      <AppStatusBar style="auto" backgroundColor="transparent" />
+export default function RootLayout() {
+  const colorScheme = useColorScheme();
 
-      <Tabs
-        tabBar={(props) => <AppTabBar {...props} />}
-        screenOptions={{
-          // Disable the built-in header — we use AppHeader inside each screen
-          headerShown: false,
-        }}
-      >
-        <Tabs.Screen
-          name="index"
-          options={{
-            title: 'Home',
-            tabBarIcon: ({ color, size }) => (
-              // <Ionicons name="home-outline" size={size} color={color} />
-              <></>
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="explore"
-          options={{
-            title: 'Explore',
-            tabBarIcon: ({ color, size }) => <></>,
-          }}
-        />
-        <Tabs.Screen
-          name="settings"
-          options={{
-            title: 'Settings',
-            tabBarIcon: ({ color, size }) => <></>,
-          }}
-        />
-      </Tabs>
-    </>
-  );
-}
+  useEffect(() => {
+    // NavigationBar.setBackgroundColorAsync("#e42d2d");
+    NavigationBar.setButtonStyleAsync("light");
+  }, []);
 
-export default function App() {
   return (
     <SafeAreaProvider>
-      <BottomSheetModalProvider>
-        <RootLayout />
-      </BottomSheetModalProvider>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <GestureHandlerRootView>
+          <BottomSheetModalProvider>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen
+                name="modal"
+                options={{ presentation: "modal", title: "Modal" }}
+              />
+            </Stack>
+          </BottomSheetModalProvider>
+        </GestureHandlerRootView>
+        {/* <StatusBar style="dark" /> */}
+      </ThemeProvider>
     </SafeAreaProvider>
   );
 }

@@ -1,4 +1,4 @@
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View, StatusBar } from "react-native";
 import {
   SafeAreaView,
   useSafeAreaInsets,
@@ -50,6 +50,7 @@ export default function HomeScreen() {
     //   className="text-white bg-blue-800 pt-26 flex-1"
     // >
     <View className="flex-1 p-3 bg-blue-600 items-center">
+      {/* <StatusBar translucent barStyle="dark-content" backgroundColor="transparent" /> */}
       <AppHeader title="Home" />
       <ScrollView
         contentContainerStyle={{
